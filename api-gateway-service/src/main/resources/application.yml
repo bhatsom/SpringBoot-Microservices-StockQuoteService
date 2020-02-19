@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: gateway-service
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+      defaultZone: http://localhost:8302/eureka/
+
+
+#zuul:
+#  #Service will be mapped under the /api URI
+#  prefix: /api
+#  routes:
+#    watchlist-service:
+#      path: /watchlist/**
+#      url: http://localhost:8300
+#    stock-quote-service:
+#      path: /stock-quote/**
+#      url: http://localhost:8301
+
+#Service will be mapped under the /api URI
+zuul:
+  prefix: /api
+  routes:
+    watchlist-service:
+      path: /watchlist/**
+      serviceId: watchlist-service
+    stock-quote-service:
+      path: /stock-quote/**
+      serviceId: stock-quote-service
