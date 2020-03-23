@@ -16,25 +16,13 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8302/eureka/
 
-
-#zuul:
-#  #Service will be mapped under the /api URI
-#  prefix: /api
-#  routes:
-#    watchlist-service:
-#      path: /watchlist/**
-#      url: http://localhost:8300
-#    stock-quote-service:
-#      path: /stock-quote/**
-#      url: http://localhost:8301
-
-#Service will be mapped under the /api URI
 zuul:
+  # services will be mapped under the /api prefix
   prefix: /api
   routes:
-    watchlist-service:
-      path: /watchlist/**
+    watchlist:
+      path: /**
       serviceId: watchlist-service
-    stock-quote-service:
-      path: /stock-quote/**
+    stock-quote:
+      path: /**
       serviceId: stock-quote-service
